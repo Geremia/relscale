@@ -16,10 +16,11 @@ s_prev = 0; s = 1 #previous and current scale factor
 f = 2 # ∈ (1,∞)
 p_max = int(sys.argv[2]) # max number of pages
 
+print("%s\t%s\t%s" % ("relscale", "Δ rescale", "pages"))
 while True:
     os.system('sed -i \'s/\\\\relscale{[0-9.]\+}/\\\\relscale{' + str(s) + '}/\' "' + texinput + '"')
     p = int(os.popen('xelatex "'+ texinput + "\" | grep -o '([0-9]\+ pages)' | grep -o '[0-9]\+'").read().strip())
-    print("relscale factor = ", s, ",\tpages = ", p)
+    print("%f\t%f\t%d" % (s, abs(s-s_prev), p))
     if abs(s - s_prev) < Δs and p <= p_max: # break when scale factor s within Δs tolerance
         break
     s_prev = s
