@@ -5,14 +5,14 @@
 
 import os, sys
 
-if len(sys.argv) != 3:
-    print("Usage example: " + sys.argv[0] + " in.tex max_num_pages")
+if len(sys.argv) != 4:
+    print("Usage example: " + sys.argv[0] + " in.tex max_num_pages tolerance")
     exit()
 
 texinput = sys.argv[1]
 
 s_prev = 0; s = 1 #previous and current scale factor
-Δs = 0.001 # 0.1% tolerance
+Δs = float(sys.argv[3]) # tolerance
 f = 2 # ∈ (1,∞)
 p_max = int(sys.argv[2]) # max number of pages
 
