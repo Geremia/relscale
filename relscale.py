@@ -29,3 +29,7 @@ while True:
     elif p > p_max:
         s /= f
     f = (1+f)/2
+
+#run again to update references that may have changed
+os.system('xelatex "'+ texinput + '"')
+
